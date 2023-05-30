@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('./server');
+const app = require('./server.js');
 
 describe('Server', () => {
   it('should return "Hello" for the root route', async () => {
