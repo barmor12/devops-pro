@@ -1,42 +1,59 @@
 const express = require('express');
-const mongoose = require('./db');
+const path = require('path');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.post('/api/register', (req, res) => {
-  // Extract the name and scores from the request body
-  const { name, scores } = req.body;
+// MongoDB connection
+const dbUrl = 'mongodb+srv://barmo2:1Q2w3e123@devops.dyvv7g5.mongodb.net'; // Replace with your MongoDB connection string
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
 
-  // Here, you can save the registration data to the MongoDB database using Mongoose
-  // Create a new schema and model for the registration data, then save the document
+// Student model
+const studentSchema = new mongoose.Schema({
+  name: String,
+  exam1: Number,
+  exam2: Number,
+  exam3: Number
+});
 
-  // Example code to save the data using a schema named 'Registration'
-  const Registration = mongoose.model('Registration', {
-    name: String,
-    scores: [Number],
+const Student = mongoose.model('Student', studentSchema);
+
+// Route to serve the HTML registration page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'register.html'));
+});
+
+// Register route
+app.post('/register', (req, res) => {
+  const { name, exam1, exam2, exam3 } = req.body;
+  const student = new Student({
+    name: name,
+    exam1: exam1,
+    exam2: exam2,
+    exam3: exam3
   });
 
-  const registration = new Registration({ name, scores });
-  registration
-    .save()
-    .then(() => {
-      console.log('Registration saved to MongoDB');
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.error('Failed to save registration:', error);
-      res.sendStatus(500);
-    });
+  student.save((err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error saving student data');
+    } else {
+      res.send('Student registered successfully');
+    }
+  });
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log('Server started!');
 });
-
-app.get('/test', (req, res) => {
-  res.send('test Hello');
-});
-
-module.exports = app;
