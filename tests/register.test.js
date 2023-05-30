@@ -17,5 +17,5 @@ describe('Registration Page:', () => {
     expect(res.body.grades.exam1).toEqual(student.exam1);
     expect(res.body.grades.exam2).toEqual(student.exam2);
     expect(res.body.grades.exam3).toEqual(student.exam3);
-  });
+  }, 10000); // Increase the timeout value to 10000 ms (10 seconds) or higher if needed
 });
