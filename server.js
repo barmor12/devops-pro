@@ -7,7 +7,6 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB connection
 const dbUrl = 'mongodb+srv://barmo2:1Q2w3e123@devops.dyvv7g5.mongodb.net'; // Replace with your MongoDB connection string
@@ -30,7 +29,7 @@ const Student = mongoose.model('Student', studentSchema);
 
 // Route to serve the HTML registration page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'register.html'));
+  res.send('Hello');
 });
 
 // Register route
@@ -48,14 +47,14 @@ app.post('/register', (req, res) => {
       console.error(err);
       res.status(500).send('Error saving student data');
     } else {
-      res.send('Student registered successfully');
+      res.sendStatus(200);
     }
   });
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Server started!');
 });
 
-module.exports = app;
+module.exports = { app, server };
