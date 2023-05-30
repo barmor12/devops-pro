@@ -8,14 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// MongoDB connection
-const dbUrl = 'mongodb+srv://barmo2:1Q2w3e123@devops.dyvv7g5.mongodb.net'; // Replace with your MongoDB connection string
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
+
 
 // Student model
 const studentSchema = new mongoose.Schema({
@@ -29,7 +22,7 @@ const Student = mongoose.model('Student', studentSchema);
 
 // Route to serve the HTML registration page
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.sendFile(path.join(__dirname, 'register.html'));
 });
 
 // Register route
@@ -47,13 +40,13 @@ app.post('/register', (req, res) => {
       console.error(err);
       res.status(500).send('Error saving student data');
     } else {
-      res.sendStatus(200);
+      res.json({ message: 'Student registered successfully' });
     }
   });
 });
 
 const port = process.env.PORT || 3000;
-const server = app.listen(port, () => {
+app.listen(port, () => {
   console.log('Server started!');
 });
 
