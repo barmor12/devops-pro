@@ -41,6 +41,11 @@ app.get('/', (req, res) => {
 app.post('/register', async (req, res) => {
   const { name, exam1, exam2, exam3 } = req.body;
 
+  // Check if required fields are present
+  if (!name || exam1 === undefined || exam2 === undefined || exam3 === undefined) {
+    return res.status(400).send('Missing required fields');
+  }
+
   // Check if grades are valid (between 0 and 100)
   if (exam1 < 0 || exam1 > 100 || exam2 < 0 || exam2 > 100 || exam3 < 0 || exam3 > 100) {
     return res.status(400).send('Invalid grades'); // Return 400 status code for invalid grades
