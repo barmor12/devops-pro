@@ -26,7 +26,6 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -54,3 +53,9 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B2317152478842609FF3696B757D62FD }}
           package: .
+
+      - name: Start Azure Web App
+        run: |
+          curl -X POST -u ${{ secrets.AZUREAPPSERVICE_USERNAME_B2317152478842609FF3696B757D62FD }}:$
+          curl -X POST -u ${{ secrets.AZUREAPPSERVICE_USERNAME_B2317152478842609FF3696B757D62FD }}:$
+
