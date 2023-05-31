@@ -56,4 +56,12 @@ app.post('/register', (req, res) => {
   });
 });
 
+const server = app.listen(3000, () => {
+  console.log('Server Started!');
+});
+
+module.exports = {
+  app,
+  server,
+};
 module.exports = app;
