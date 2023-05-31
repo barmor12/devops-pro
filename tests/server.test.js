@@ -1,5 +1,5 @@
 const request = require('supertest');
-const { app, server } = require('../server');
+const { app, server } = require('../index');
 
 describe('Registration API', () => {
   afterAll(() => {
@@ -15,7 +15,7 @@ describe('Registration API', () => {
       exam3: 85,
     };
 
-    const response = await request(app)
+    const response = await request(server)
       .post('/register')
       .send(studentData);
 
@@ -31,7 +31,7 @@ describe('Registration API', () => {
       exam3: 85,
     };
 
-    const response = await request(app)
+    const response = await request(server)
       .post('/register')
       .send(invalidStudentData);
 
