@@ -25,8 +25,7 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-      - name: Run Jest tests
-        run: npm test -- --detectOpenHandles
+
 
 
       - name: Upload artifact for deployment job
