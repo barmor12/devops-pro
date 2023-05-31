@@ -1,11 +1,9 @@
-const app = require('./server');
-const port = process.env.PORT || 3005;
+const { startServer } = require('./server');
+const mongoose = require('mongoose');
+const port = process.env.PORT || 3008;
 
-const server = app.listen(port, () => {
-  console.log('Server Started!');
-});
+const server = startServer(port);
 
 module.exports = {
-  app,
   server,
 };

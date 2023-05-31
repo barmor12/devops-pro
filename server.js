@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://barmo2:1Q2w3e123@devops.dyvv7g5.mongodb.net/', {
+mongoose.connect('mongodb+srv://barmo2:1Q2w3e123@devops.dyvv7g5.mongodb.net/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -38,30 +38,37 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
   const { name, exam1, exam2, exam3 } = req.body;
-  const student = new Student({
-    name: name,
-    exam1: exam1,
-    exam2: exam2,
-    exam3: exam3,
-  });
-  student.save((err, savedStudent) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error saving student');
-    } else {
-      res.redirect('/success.html');
-    }
-  });
+
+  // Check if grades are valid (between 0 and 100)
+  if (exam1 < 0 || exam1 > 100 || exam2 < 0 || exam2 > 100 || exam3 < 0 || exam3 > 100) {
+    return res.status(400).send('Invalid grades'); // Return 400 status code for invalid grades
+  }
+
+  try {
+    const student = new Student({
+      name: name,
+      exam1: exam1,
+      exam2: exam2,
+      exam3: exam3,
+    });
+
+    const savedStudent = await student.save();
+    console.log('Student saved:', savedStudent);
+    res.redirect('/success.html');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error saving student'); // Return 500 status code for error
+  }
 });
 
-const server = app.listen(3000, () => {
-  console.log('Server Started!');
-});
+function startServer(port) {
+  return app.listen(port, () => {
+    console.log('Server Started!');
+  });
+}
 
 module.exports = {
-  app,
-  server,
+  startServer,
 };
-module.exports = app;
