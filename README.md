@@ -49,7 +49,7 @@ Our CI/CD pipeline is set up using Azure. The pipeline is triggered upon every p
 4. Build the project
 5. CI Deployment (To Render hosting)
 
-The live version of the frontend project is hosted at: devopspro.azurewebsites.net
+The live version of the frontend project is hosted at: https://devopspro.azurewebsites.net
 
 You can find the configuration file for the CircleCI pipeline in the `.circleci` folder at the root of the repository.
 
