@@ -54,6 +54,5 @@ The live version of the frontend project is hosted at: https://devopspro.azurewe
 You can find the configuration file for the CircleCI pipeline in the `.circleci` folder at the root of the repository.
 
 
-[![Access MongoDB Data](https://img.shields.io/badge/Access%20MongoDB%20Data-Click%20Here-red)](devopspro.azurewebsites.net)
 
 
