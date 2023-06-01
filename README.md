@@ -1,15 +1,56 @@
-Frontend Project - React Website
-This project is a simple frontend application built using React. The primary goal of this project is to learn how to work in Sprints and manage Continuous Integration/Continuous Deployment (CI/CD) pipeline workflows. This project serves as the frontend for a separate Node.js (Express) backend.
+# Frontend Project - React Website
 
-Getting Started
-To get started with the project, you'll need to have Node.js and npm installed on your local development environment.
+This project is a simple frontend application built using React. The primary goal of this project is to learn how to work in Sprints and manage Continuous Integration/Continuous Deployment (CI/CD) pipeline workflows. This project serves as the frontend for a separate 
 
-Clone the repository:
-git clone https://github.com/barmor12/devops-pro.git
-Change to the project directory:
+## Getting Started
+
+To get started with the project, you'll need to have [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/get-npm) installed on your local development environment.
+
+1. Clone the repository:
+```
+git clone git clone https://github.com/barmor12/devops-pro.git
+```
+
+2. Change to the project directory:
+```
 cd <frontend-project-name>
-Install the dependencies:
+```
+
+3. Install the dependencies:
+```
 npm install
-Run the development server:
+```
+
+4. Run the development server:
+```
 npm start
-The React app should now be accessible at http://localhost:3000. To interact with the backend, ensure that the backend project is also set up and running.
+```
+
+The React app should now be accessible at `http://localhost:3000`.
+
+
+## Linter and Syntax
+
+This project uses a linter with Airbnb's syntax configuration. This helps maintain a consistent coding style throughout the project. The linter will check for syntax errors and enforce best practices in the code.
+
+To run the linter manually, execute the following command:
+
+```
+npm init @eslint/config
+```
+
+## CI/CD Pipeline
+
+Our CI/CD pipeline is set up using Azure. The pipeline is triggered upon every push to the repository. It includes the following stages:
+
+1. Install npm packages
+2. Run tests
+3. Run linter
+4. Build the project
+5. CI Deployment (To Render hosting)
+
+The live version of the frontend project is hosted at: devopspro.azurewebsites.net
+
+You can find the configuration file for the CircleCI pipeline in the `.circleci` folder at the root of the repository.
+
+
