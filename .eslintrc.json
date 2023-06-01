@@ -11,8 +11,8 @@
     },
     "rules": {
       "semi": "error",
-      "quotes": ["error", "single"]
-      // Add any other rules you want to enforce
+      "quotes": ["error", "single"],
+      "no-unused-vars": ["error", { "varsIgnorePattern": "^ejs$" }]
     }
   }
   
