@@ -44,13 +44,16 @@ npm init @eslint/config
 Our CI/CD pipeline is set up using Azure. The pipeline is triggered upon every push to the repository. It includes the following stages:
 
 1. Install npm packages
-2. Run tests
+2. Build the project
 3. Run linter
-4. Build the project
+4. Run Tests
 5. CI Deployment (To Render hosting)
 
 The live version of the frontend project is hosted at: https://devopspro.azurewebsites.net
 
 You can find the configuration file for the CircleCI pipeline in the `.circleci` folder at the root of the repository.
+
+
+[![Access MongoDB Data](https://img.shields.io/badge/Access%20MongoDB%20Data-Click%20Here-red)](devopspro.azurewebsites.net)
 
 

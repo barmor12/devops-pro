@@ -27,10 +27,10 @@ jobs:
       - name: npm build
         run: |
           npm run build --if-present
-      - name: npm build
+      - name: npm lint
         run: |
           npm run lint --if-present
-      - name: npm run lint
+      - name: npm run test
         run: |
           npm run test --if-present
 
