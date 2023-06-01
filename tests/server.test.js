@@ -38,7 +38,8 @@ describe('Registration Endpoint', () => {
 
     // Check the response status and body
     expect(response.status).toBe(302); // Expect a redirect
-    expect(response.header.location).toBe('/success.html'); // Expect a redirect to success.html
+    expect(response.header.location).toBe('/students');
+
 
     // Check if the student was saved in the database
     const students = await Student.find();
@@ -51,7 +52,7 @@ describe('Registration Endpoint', () => {
 
   it('should return an error for missing required fields', async () => {
     const studentData = {
-      name: 'John Doe',
+      name: 'Bar Mor',
       exam1: 85,
       exam2: 90,
       // Missing exam3 field
@@ -71,7 +72,7 @@ describe('Registration Endpoint', () => {
 
   it('should return an error for invalid grades', async () => {
     const studentData = {
-      name: 'John Doe',
+      name: 'Ziv Mor',
       exam1: 85,
       exam2: 101, // Invalid grade (out of range)
       exam3: 95,

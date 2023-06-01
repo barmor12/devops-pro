@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const ejs = require('ejs');
 
 const app = express();
 
@@ -38,6 +39,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+app.get('/students', async (req, res) => {
+  try {
+    const students = await Student.find();
+    res.render('students', { students }); // Render a new page called 'students' and pass the retrieved students as data
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving students'); // Return 500 status code for error
+  }
+});
+
 app.post('/register', async (req, res) => {
   const { name, exam1, exam2, exam3 } = req.body;
 
@@ -61,7 +72,7 @@ app.post('/register', async (req, res) => {
 
     const savedStudent = await student.save();
     console.log('Student saved:', savedStudent);
-    res.redirect('/success.html');
+    res.redirect('/students'); // Redirect to the '/students' route after successful registration
   } catch (error) {
     console.error(error);
     res.status(500).send('Error saving student'); // Return 500 status code for error
@@ -69,6 +80,9 @@ app.post('/register', async (req, res) => {
 });
 
 function startServer(port) {
+  app.set('view engine', 'ejs'); // Set EJS as the template engine
+  app.set('views', path.join(__dirname, 'views')); // Set the directory for views
+
   return app.listen(port, () => {
     console.log('Server Started!');
   });
