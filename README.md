@@ -8,7 +8,7 @@ To get started with the project, you'll need to have [Node.js](https://nodejs.or
 
 1. Clone the repository:
 ```
-git clone git clone https://github.com/barmor12/devops-pro.git
+git clone https://github.com/barmor12/devops-pro.git
 ```
 
 2. Change to the project directory:
