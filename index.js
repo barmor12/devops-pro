@@ -1,6 +1,5 @@
 const { startServer } = require('./server');
-const mongoose = require('mongoose');
-const port = process.env.PORT || 3009;
+const port = process.env.PORT || 3000;
 
 const server = startServer(port);
 
