@@ -1,6 +1,6 @@
 # Frontend Project - Node.js Website for DevOps Course
 
-Welcome to our Node.js Frontend Project! This is an integral part of our DevOps course, where we aim to demonstrate the essential components of a modern DevOps workflow. This project allows us to practice important DevOps concepts and tooling, such as automated testing, linting, and Continuous Integration/Continuous Deployment (CI/CD).
+Welcome to my Node.js Frontend Project! This is an integral part of our DevOps course, where we aim to demonstrate the essential components of a modern DevOps workflow. This project allows us to practice important DevOps concepts and tooling, such as automated testing, linting, and Continuous Integration/Continuous Deployment (CI/CD).
 
 ## Getting Started
 
