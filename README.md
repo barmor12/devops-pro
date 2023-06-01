@@ -1,6 +1,6 @@
-# Frontend Project - React Website
+# Frontend Project - Node.js Website for DevOps Course
 
-This project is a simple frontend application built using React. The primary goal of this project is to learn how to work in Sprints and manage Continuous Integration/Continuous Deployment (CI/CD) pipeline workflows. This project serves as the frontend for a separate 
+Welcome to our Node.js Frontend Project! This is an integral part of our DevOps course, where we aim to demonstrate the essential components of a modern DevOps workflow. This project allows us to practice important DevOps concepts and tooling, such as automated testing, linting, and Continuous Integration/Continuous Deployment (CI/CD).
 
 ## Getting Started
 
